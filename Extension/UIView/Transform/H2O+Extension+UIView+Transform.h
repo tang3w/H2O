@@ -5,61 +5,121 @@
 
 @interface UIView (H2O_Extension_UIView_Transform)
 
-#pragma mark - [[UIView]].[Origin]
+// [[[ CGOffset
+#pragma mark CGOffset
+struct CGOffset {
+    CGFloat offsetX;
+    CGFloat offsetY;
+};
+typedef struct CGOffset CGOffset;
+
+CG_INLINE CGOffset
+CGOffsetMake(CGFloat offsetX, CGFloat offsetY);
+// ]]]
+
+// [[[ Center
+#pragma mark Center
+@property (nonatomic, assign) CGFloat centerX;
+@property (nonatomic, assign) CGFloat centerY;
+
+// Offset center
+@property (nonatomic, assign) CGFloat offsetCenterX;
+@property (nonatomic, assign) CGFloat offsetCenterY;
+@property (nonatomic, assign) CGOffset offsetCenter;
+
+// Chain methods
+- (UIView *)centerX:(CGFloat)centerX;
+- (UIView *)centerY:(CGFloat)centerY;
+- (UIView *)center:(CGPoint)center;
+- (UIView *)offsetCenterX:(CGFloat)offsetCenterX;
+- (UIView *)offsetCenterY:(CGFloat)offsetCenterY;
+- (UIView *)offsetCenter:(CGOffset)offsetCenter;
+// ]]]
+
+// [[[ Origin
+#pragma mark Origin
 @property (nonatomic, assign) CGFloat x;
 @property (nonatomic, assign) CGFloat y;
-
 // Alias of x and y
 @property (nonatomic, assign, getter = x, setter = setX:) CGFloat left;
 @property (nonatomic, assign, getter = y, setter = setY:) CGFloat top;
 @property (nonatomic, assign, getter = x, setter = setX:) CGFloat originX;
 @property (nonatomic, assign, getter = y, setter = setY:) CGFloat originY;
-
 @property (nonatomic, assign) CGPoint origin;
 
-#pragma mark - [[UIView]].[Size]
+// Offset origin
+@property (nonatomic, assign) CGFloat offsetX;
+@property (nonatomic, assign) CGFloat offsetY;
+// Alias of offsetX and offsetY
+@property (nonatomic, assign) CGFloat offsetLeft;
+@property (nonatomic, assign) CGFloat offsetTop;
+@property (nonatomic, assign) CGOffset offsetOrigin;
+
+// Chain methods
+- (UIView *)x:(CGFloat)x;
+- (UIView *)y:(CGFloat)y;
+- (UIView *)left:(CGFloat)left;
+- (UIView *)top:(CGFloat)top;
+- (UIView *)originX:(CGFloat)originX;
+- (UIView *)originY:(CGFloat)originY;
+- (UIView *)origin:(CGPoint)origin;
+- (UIView *)offsetX:(CGFloat)offsetX;
+- (UIView *)offsetY:(CGFloat)offsetY;
+- (UIView *)offsetLeft:(CGFloat)offsetLeft;
+- (UIView *)offsetTop:(CGFloat)offsetTop;
+- (UIView *)offsetOrigin:(CGOffset)offsetOrigin;
+// ]]]
+
+// [[[ Size
+#pragma mark Size
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
-
 @property (nonatomic, assign) CGSize size;
 
-#pragma mark - [[UIView]].[Center]
-@property (nonatomic, assign) CGFloat centerX;
-@property (nonatomic, assign) CGFloat centerY;
+// Offset Size
+@property (nonatomic, assign) CGFloat offsetWidth;
+@property (nonatomic, assign) CGFloat offsetHeight;
+@property (nonatomic, assign) CGSize offsetSize;
 
-#pragma mark - [[UIView]].[CoordValue]
-@property (nonatomic, assign, readonly) CGFloat coordRight;
-@property (nonatomic, assign, readonly) CGFloat coordBottom;
+// Chain methods
+- (UIView *)width:(CGFloat)width;
+- (UIView *)height:(CGFloat)height;
+- (UIView *)size:(CGSize)size;
+- (UIView *)offsetWidth:(CGFloat)offsetWidth;
+- (UIView *)offsetHeight:(CGFloat)offsetHeight;
+- (UIView *)offsetSize:(CGSize)offsetSize;
+// ]]]
 
-#pragma mark - Shortcut methods
-- (void)x:(CGFloat)x
-        y:(CGFloat)y;
-- (void)left:(CGFloat)left 
-         top:(CGFloat)top;
-- (void)originX:(CGFloat)originX 
-        originY:(CGFloat)originY;
-- (void)width:(CGFloat)width 
-       height:(CGFloat)height;
-- (void)centerX:(CGFloat)centerX
-        centerY:(CGFloat)centerY;
+// [[[ Zoom
+#pragma mark Zoom
+@property (nonatomic, assign) CGFloat zoom;
+@property (nonatomic, assign) CGFloat zoomWidth;
+@property (nonatomic, assign) CGFloat zoomHeight;
 
-// Set offset values
-- (void)offsetX:(CGFloat)offsetX
-        offsetY:(CGFloat)offsetY;
-- (void)offsetLeft:(CGFloat)offsetLeft
-         offsetTop:(CGFloat)offsetTop;
-- (void)offsetOriginX:(CGFloat)offsetOriginX 
-        offsetOriginY:(CGFloat)offsetOriginY;
-- (void)offsetWidth:(CGFloat)offsetWidth
-       offsetHeight:(CGFloat)offsetHeight;
-- (void)offsetCenterX:(CGFloat)offsetCenterX
-        offsetCenterY:(CGFloat)offsetCenterY;
+// Chain methods
+- (UIView *)zoom:(CGFloat)zoom;
+- (UIView *)zoomWidth:(CGFloat)zoomWidth;
+- (UIView *)zoomHeight:(CGFloat)zoomHeight;
+// ]]]
 
-#pragma mark - [[UIView]].[Zoom]
-- (void)setZoom:(CGFloat)factor;
-- (void)setZoomWidth:(CGFloat)widthFactor;
-- (void)setZoomHeight:(CGFloat)heightFactor;
-- (void)zoomWidth:(CGFloat)widthFactor
-       zoomHeight:(CGFloat)heightFactor;
+// [[[ Center of rect
+#pragma mark Center of rect
+@property (nonatomic, assign, readonly) CGPoint centerOfRect;
+// ]]]
+
+// [[[ Center to superView
+#pragma mark Center to superView
+- (UIView *)centerToSuper;
+// ]]]
+
+// [[[ To right and bottom
+#pragma mark To right and bottom
+@property (nonatomic, assign) CGFloat toRight;
+@property (nonatomic, assign) CGFloat toBottom;
+
+// Chain methods
+- (UIView *)toRight:(CGFloat)toRight;
+- (UIView *)toBottom:(CGFloat)toBottom;
+// ]]]
 
 @end
