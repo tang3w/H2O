@@ -93,6 +93,96 @@ CGOffsetMake(CGFloat offsetX, CGFloat offsetY) {
     self.offsetCenter = offsetCenter;
     return self;
 }
+// ]]]
+
+// [[[ Size
+#pragma mark Size
+- (CGFloat)width {
+    return self.frame.size.width;
+}
+
+- (void)setWidth:(CGFloat)width {
+    CGRect r = self.frame;
+    r.size.width = width;
+    self.frame = r;
+}
+
+- (CGFloat)height {
+    return self.frame.size.height;
+}
+
+- (void)setHeight:(CGFloat)height {
+    CGRect r = self.frame;
+    r.size.height = height;
+    self.frame = r;
+}
+
+- (CGSize)size {
+    return self.frame.size;
+}
+
+- (void)setSize:(CGSize)size {
+    self.width = size.width;
+    self.height = size.height;
+}
+
+// Offset Size
+- (CGFloat)offsetWidth {
+    return NAN;
+}
+
+- (void)setOffsetWidth:(CGFloat)offsetWidth {
+    self.width += offsetWidth;
+}
+
+- (CGFloat)offsetHeight {
+    return NAN;
+}
+
+- (void)setOffsetHeight:(CGFloat)offsetHeight {
+    self.height += offsetHeight;
+}
+
+- (CGSize)offsetSize {
+    return CGSizeMake(NAN, NAN);
+}
+
+- (void)setOffsetSize:(CGSize)offsetSize {
+    self.offsetWidth = offsetSize.width;
+    self.offsetHeight = offsetSize.height;
+}
+
+// Chain methods
+- (UIView *)width:(CGFloat)width {
+    self.width = width;
+    return self;
+}
+
+- (UIView *)height:(CGFloat)height {
+    self.height = height;
+    return self;
+}
+
+- (UIView *)size:(CGSize)size {
+    self.size = size;
+    return self;
+}
+
+- (UIView *)offsetWidth:(CGFloat)offsetWidth {
+    self.offsetWidth = offsetWidth;
+    return self;
+}
+
+- (UIView *)offsetHeight:(CGFloat)offsetHeight {
+    self.offsetHeight = offsetHeight;
+    return self;
+}
+
+- (UIView *)offsetSize:(CGSize)offsetSize {
+    self.offsetSize = offsetSize;
+    return self;
+}
+// ]]]
 
 // [[[ Origin
 #pragma mark Origin
@@ -222,96 +312,6 @@ CGOffsetMake(CGFloat offsetX, CGFloat offsetY) {
 }
 // ]]]
 
-
-// [[[ Size
-#pragma mark Size
-- (CGFloat)width {
-    return self.frame.size.width;
-}
-
-- (void)setWidth:(CGFloat)width {
-    CGRect r = self.frame;
-    r.size.width = width;
-    self.frame = r;
-}
-
-- (CGFloat)height {
-    return self.frame.size.height;
-}
-
-- (void)setHeight:(CGFloat)height {
-    CGRect r = self.frame;
-    r.size.height = height;
-    self.frame = r;
-}
-
-- (CGSize)size {
-    return self.frame.size;
-}
-
-- (void)setSize:(CGSize)size {
-    self.width = size.width;
-    self.height = size.height;
-}
-
-// Offset Size
-- (CGFloat)offsetWidth {
-    return NAN;
-}
-
-- (void)setOffsetWidth:(CGFloat)offsetWidth {
-    self.width += offsetWidth;
-}
-
-- (CGFloat)offsetHeight {
-    return NAN;
-}
-
-- (void)setOffsetHeight:(CGFloat)offsetHeight {
-    self.height += offsetHeight;
-}
-
-- (CGSize)offsetSize {
-    return CGSizeMake(NAN, NAN);
-}
-
-- (void)setOffsetSize:(CGSize)offsetSize {
-    self.offsetWidth = offsetSize.width;
-    self.offsetHeight = offsetSize.height;
-}
-
-// Chain methods
-- (UIView *)width:(CGFloat)width {
-    self.width = width;
-    return self;
-}
-
-- (UIView *)height:(CGFloat)height {
-    self.height = height;
-    return self;
-}
-
-- (UIView *)size:(CGSize)size {
-    self.size = size;
-    return self;
-}
-
-- (UIView *)offsetWidth:(CGFloat)offsetWidth {
-    self.offsetWidth = offsetWidth;
-    return self;
-}
-
-- (UIView *)offsetHeight:(CGFloat)offsetHeight {
-    self.offsetHeight = offsetHeight;
-    return self;
-}
-
-- (UIView *)offsetSize:(CGSize)offsetSize {
-    self.offsetSize = offsetSize;
-    return self;
-}
-// ]]]
-
 // [[[ Zoom
 #pragma mark Zoom
 - (CGFloat)zoom {
@@ -356,19 +356,58 @@ CGOffsetMake(CGFloat offsetX, CGFloat offsetY) {
 }
 // ]]]
 
-// [[[ Center of rect
-#pragma mark Center of rect
-- (CGPoint)centerOfRect {
+// [[[ Midpoint
+#pragma mark Midpoint
+- (CGPoint)midpoint {
     return CGPointMake(self.width / 2.0f, self.height / 2.0f);
 }
 // ]]]
 
-// [[[ Center to superView
-#pragma mark Center to superView
+// [[[ Center to superview
+#pragma mark Center to superview
 - (UIView *)centerToSuper {
     if (self.superview) {
-        self.center = self.superview.centerOfRect;
+        self.center = self.superview.midpoint;
     }
+    return self;
+}
+// ]]]
+
+// [[[ Right and bottom
+- (CGFloat)right {
+    if (self.superview) {
+        return self.superview.width - self.toRight;
+    }
+    return NAN;
+}
+
+- (void)setRight:(CGFloat)right {
+    if (self.superview) {
+        self.toRight = self.superview.width - right;
+    }
+}
+
+- (CGFloat)bottom {
+    if (self.superview) {
+        return self.superview.height - self.toBottom;
+    }
+    return NAN;
+}
+
+- (void)setBottom:(CGFloat)bottom {
+    if (self.superview) {
+        self.toBottom = self.superview.height - bottom;
+    }
+}
+
+// Chain methods
+- (UIView *)right:(CGFloat)right {
+    self.right = right;
+    return self;
+}
+
+- (UIView *)bottom:(CGFloat)bottom {
+    self.bottom = bottom;
     return self;
 }
 // ]]]

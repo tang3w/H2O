@@ -36,6 +36,26 @@ CGOffsetMake(CGFloat offsetX, CGFloat offsetY);
 - (UIView *)offsetCenter:(CGOffset)offsetCenter;
 // ]]]
 
+// [[[ Size
+#pragma mark Size
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) CGSize size;
+
+// Offset Size
+@property (nonatomic, assign) CGFloat offsetWidth;
+@property (nonatomic, assign) CGFloat offsetHeight;
+@property (nonatomic, assign) CGSize offsetSize;
+
+// Chain methods
+- (UIView *)width:(CGFloat)width;
+- (UIView *)height:(CGFloat)height;
+- (UIView *)size:(CGSize)size;
+- (UIView *)offsetWidth:(CGFloat)offsetWidth;
+- (UIView *)offsetHeight:(CGFloat)offsetHeight;
+- (UIView *)offsetSize:(CGSize)offsetSize;
+// ]]]
+
 // [[[ Origin
 #pragma mark Origin
 @property (nonatomic, assign) CGFloat x;
@@ -70,26 +90,6 @@ CGOffsetMake(CGFloat offsetX, CGFloat offsetY);
 - (UIView *)offsetOrigin:(CGOffset)offsetOrigin;
 // ]]]
 
-// [[[ Size
-#pragma mark Size
-@property (nonatomic, assign) CGFloat width;
-@property (nonatomic, assign) CGFloat height;
-@property (nonatomic, assign) CGSize size;
-
-// Offset Size
-@property (nonatomic, assign) CGFloat offsetWidth;
-@property (nonatomic, assign) CGFloat offsetHeight;
-@property (nonatomic, assign) CGSize offsetSize;
-
-// Chain methods
-- (UIView *)width:(CGFloat)width;
-- (UIView *)height:(CGFloat)height;
-- (UIView *)size:(CGSize)size;
-- (UIView *)offsetWidth:(CGFloat)offsetWidth;
-- (UIView *)offsetHeight:(CGFloat)offsetHeight;
-- (UIView *)offsetSize:(CGSize)offsetSize;
-// ]]]
-
 // [[[ Zoom
 #pragma mark Zoom
 @property (nonatomic, assign) CGFloat zoom;
@@ -102,14 +102,23 @@ CGOffsetMake(CGFloat offsetX, CGFloat offsetY);
 - (UIView *)zoomHeight:(CGFloat)zoomHeight;
 // ]]]
 
-// [[[ Center of rect
-#pragma mark Center of rect
-@property (nonatomic, assign, readonly) CGPoint centerOfRect;
+// [[[ Midpoint
+#pragma mark Midpoint
+@property (nonatomic, assign, readonly) CGPoint midpoint;
 // ]]]
 
-// [[[ Center to superView
-#pragma mark Center to superView
+// [[[ Center to superview
+#pragma mark Center to superview
 - (UIView *)centerToSuper;
+// ]]]
+
+// [[[ Right and bottom
+@property (nonatomic, assign) CGFloat right;
+@property (nonatomic, assign) CGFloat bottom;
+
+// Chain methods
+- (UIView *)right:(CGFloat)right;
+- (UIView *)bottom:(CGFloat)bottom;
 // ]]]
 
 // [[[ To right and bottom
